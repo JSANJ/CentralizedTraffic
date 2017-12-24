@@ -16,8 +16,16 @@ Assumptions:
   2. Acceleration/deceleration is constant and discontinuous.
   
 To be implemented:
-  1. Continuous (linear) acceleration/deceleration.
-  2. Left/Right/U-turns.
-  3. Continuous (non-linear) acceleration/deceleration.
-  4. Vectorization of car velocity/acceleration/facing-direction, etc.
-  5. Generalization to different intersection conditions.
+  1. Detect collisions.
+  2. Determine collision area.
+  3. Vectorization of car velocity/acceleration/facing-direction, etc.
+  4. Safety margin for collisions.
+  5. Left/Right/U-turns.
+  6. Continuous (linear) acceleration/deceleration.
+  7. Continuous (non-linear) acceleration/deceleration.
+  8. Generalization to different intersection conditions.
+
+Features:
+  1. Simulates car crossings as Python Animation.
+  2. Calculates and decelerates (with constant deceleration) straight-crossing vehicles based on collision from runway until collision area.
+  
