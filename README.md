@@ -24,12 +24,13 @@ To be implemented:
   1. Detect collisions.
   2. Determine collision area.
   3. Vectorization of car velocity/acceleration/facing-direction, etc.
-  4. Safety margin for collisions.
-  5. Left/Right/U-turns.
-  6. Continuous (linear) acceleration/deceleration.
-  7. Continuous (non-linear) acceleration/deceleration.
-  8. Generalization to left-lane driving (right-side driver).
-  9. Generalization to different intersection conditions.
+  4. Randomization of car source positions.
+  5. Safety margin for collisions.
+  6. Left/Right/U-turns.
+  7. Continuous (linear) acceleration/deceleration.
+  8. Continuous (non-linear) acceleration/deceleration.
+  9. Generalization to left-lane driving (right-side driver).
+  10. Generalization to different intersection conditions.
 
 Features:
   1. Simulates car crossings as Python Animation.
