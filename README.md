@@ -11,9 +11,10 @@ Conditions:
   1. Max acceleration/deceleration are defined.
   2. Max speed is defined.
   3. Runway lengths are equal.
-  4. 4 sides in intersection.
+  4. Interesction has 4 sides.
   5. 4 lanes (2 each direction) on each side.
   6. Constant speed in intersection (for simplifaction).
+  7. Right-lane driving (left-side driver).
   
 Assumptions:  
   1. (Currently) Only going straight.
@@ -27,7 +28,8 @@ To be implemented:
   5. Left/Right/U-turns.
   6. Continuous (linear) acceleration/deceleration.
   7. Continuous (non-linear) acceleration/deceleration.
-  8. Generalization to different intersection conditions.
+  8. Generalization to left-lane driving (right-side driver).
+  9. Generalization to different intersection conditions.
 
 Features:
   1. Simulates car crossings as Python Animation.
