@@ -1,6 +1,6 @@
 # CentralizedTraffic
 Code created and maintained by Justin David Q. SAN JUAN, 
-email: jdqsj1997@yahoo.com
+email: jdqsj1997@yahoo.com,
 website: justinsj.weebly.com
 
 This project will simulate a centralized traffic system whose aim is to minimize the need for deceleration in traffic intersections given random requests for entry in the intersection. The current stage will look at a rotationally symmetric 4-sided, 2-lane in each direction intersection. The aim for the project is to: 
