@@ -37,7 +37,7 @@ class CarClass(object):
         self.source = source
         self.target = target
         
-        print(self.s)
+        #print(self.s)
         self.a_scalar = 0
         self.d = 0
         self.t = 0
@@ -88,7 +88,7 @@ class CarClass(object):
         self.current_location_x1x2y1y2 = (self.x, self.x+self.w,self.y,self.y+self.h)
         self.check_overlap_with_intersection()
         if self.cleared_intersection == 1 and self.at_intersection == 0 and self.direction == 'horizontal': # at_intersection should be 0 when cleared-intersection == 1
-            self.a_scalar = a_max/2 #accelerate when out of intersection
+            self.a_scalar = a_max/30 #accelerate when out of intersection
         if self.v[0] > 0:
             self.a[0] = self.a_scalar
         elif self.v[0] < 0:
@@ -152,10 +152,10 @@ class CarClass(object):
                     self.intersection_collision_map[j][i].remove(self)
                     
     def area_to_clear_straight(self,intersection_collision_map):
-        print('area_to_clear_straight')
+        #print('area_to_clear_straight')
         #direction is 1 or 0, 1 = horizontal, 0 = vertical
         if self.direction == 'vertical':
-            print('vertical')
+            #print('vertical')
 #            self.area_to_clear_coords_x1x2y1y2 = (int(self.source[0]*intersection_w/4),int((self.source[0]+1)*intersection_w/4),0,intersection_w)
             for j in range(len(intersection_collision_map)): # number of rows (y)
                 for i in range(int(self.source[0]*intersection_w/4),int((self.source[0]+1)*intersection_w/4)):
@@ -163,7 +163,7 @@ class CarClass(object):
                         intersection_collision_map[j][i].append(self)
                         
         elif self.direction == 'horizontal':
-            print('horizontal')
+            #print('horizontal')
 #            self.area_to_clear_coords_x1x2y1y2 = (0,intersection_h,int(self.source[1]*intersection_w/4),int((self.source[1]+1)*intersection_w/4))
             for j in range(int(self.source[1]*intersection_w/4),int((self.source[1]+1)*intersection_w/4)): # number of rows
                 for i in range(len(intersection_collision_map)): # (x) number of columns assuming square intersection area
@@ -173,17 +173,17 @@ class CarClass(object):
         return intersection_collision_map
     
     def get_area_to_clear(self, intersection_collision_map, source,target):
-        print('get_area_to_clear')
+        #print('get_area_to_clear')
         #source is in [y,x]
         self.source = source
         self.target = target
         
         if self.target[1] <= self.source[1] + vertical_straight_threshold and self.target[1] >= self.source[1] - vertical_straight_threshold:
-            print('horizontal')
+            #print('horizontal')
             self.direction = 'horizontal'
             intersection_collision_map = self.area_to_clear_straight(intersection_collision_map)
         elif self.target[0] <= self.source[0] + horizontal_straight_threshold and self.target[0] >= self.source[0] - horizontal_straight_threshold:
-            print('vertical')
+            #print('vertical')
             self.direction = 'vertical'
             intersection_collision_map = self.area_to_clear_straight(intersection_collision_map)
 #        self.area_to_clear.flatten().tolist()
@@ -197,7 +197,7 @@ class CarClass(object):
 #        Output: x1 x2 y1 y2 coordinates of collision area
 #        '''
     def take_action(self,car_list):
-        print('take_action')
+        #print('take_action')
         '''
         Given crash possibilities, update acceleration and/or speed as necessary
         Input: Collision area, crash pair
@@ -210,19 +210,19 @@ class CarClass(object):
             other_car = self.get_crash_pair(car_list) # temporarily set to car_1
 #            d = self.get_distance_to_intersection(self.current_location_x1x2y1y2)
             d = self.get_distance_to_collision(self.absolute_collision_coords_x1x2y1y2, self.current_location_x1x2y1y2)
-            print('d')
-            print(d)
+#            print('d')
+#            print(d)
             t0 = self.get_time_to_collision()
-            print('t0')
-            print(t0)
+#            print('t0')
+#            print(t0)
             t1 = self.get_time_to_clear(other_car, self.absolute_collision_coords_x1x2y1y2)
-            print('t1')
-            print(t1)
+#            print('t1')
+#            print(t1)
             t_to_pass_over = (30+60+safety_distance)/self.s
             t2 = t0 + t_to_pass_over
             if t1 > t0:
                 self.a_scalar = self.get_acceleration(d,self.s,t1)
-                print('set acceleration to: ' + str(self.a_scalar))
+#                print('set acceleration to: ' + str(self.a_scalar))
     
             elif t1 < t2: 
                 self.a_scalar = a_max/2
@@ -252,7 +252,7 @@ class CarClass(object):
                     if i > collision_coord_x2: collision_coord_x2 = i
                     for k in intersection_collision_map[j][i]:
                         if not(k in self.collision_pairs) and k != self:
-                            print(k)
+                            #print(k)
                             self.collision_pairs.append(k)
                             
         self.collision_coords_x1x2y1y2 = (collision_coord_x1,collision_coord_x2,collision_coord_y1, collision_coord_y2)
@@ -261,9 +261,9 @@ class CarClass(object):
                                                    length_of_runway + collision_coord_y1,
                                                    length_of_runway + collision_coord_y2)
 
-        print('collision_possible = '  +str(self.collision_possible))
+#        print('collision_possible = '  +str(self.collision_possible))
         self.take_action(car_list)        
-        return self.collision_possible
+        return #self.collision_possible
     def get_x1_x2_y1_x2_from_xywh(coords_tuple):
         x, y, w, h = coords_tuple
         x1 = x
@@ -319,7 +319,7 @@ class CarClass(object):
     
     def get_distance_to_collision(self,absolute_collision_coords_x1x2y1y2, current_location_x1x2y1y2):   
 #        collision_coords_x1x2y1y2 = (257, 257+30, 257, 257+30) # temporary data
-        print(absolute_collision_coords_x1x2y1y2)
+#        print(absolute_collision_coords_x1x2y1y2)
         right_left = np.absolute(absolute_collision_coords_x1x2y1y2[0] - current_location_x1x2y1y2[1])
         left_right = np.absolute(absolute_collision_coords_x1x2y1y2[1] - current_location_x1x2y1y2[0])
         up_down = np.absolute(absolute_collision_coords_x1x2y1y2[2] - current_location_x1x2y1y2[3])
@@ -336,32 +336,32 @@ class CarClass(object):
             self.t = self.d/self.s         
         return self.t
     def get_time_to_clear(self,other_car,absolute_collision_coords_x1x2y1y2):
-        print('get_time_to_clear')
+#        print('get_time_to_clear')
         '''
         time to arrive to the collision_area + time to pass over collision_area
         temporary data
         '''
         other_car.get_distance_to_collision(absolute_collision_coords_x1x2y1y2,other_car.current_location_x1x2y1y2)
-        print('other_car.d')
-        print(other_car.d)
+#        print('other_car.d')
+#        print(other_car.d)
         t_to_arrive = other_car.get_time_to_collision()
-        print('t_to_arrive of other car')
-        print(t_to_arrive)
+#        print('t_to_arrive of other car')
+#        print(t_to_arrive)
         t_to_pass_over = (30+60+safety_distance)/other_car.s #distance to clear is length of collision area + car length
-        print('t_to_pass_over')
-        print(t_to_pass_over)
+#        print('t_to_pass_over')
+#        print(t_to_pass_over)
         self.t1 = t_to_arrive+t_to_pass_over
-        print('t1')
-        print(self.t1)
+#        print('t1')
+#        print(self.t1)
         return self.t1
     def get_crash_pair(self,car_list): #in car_list, find other car to crash with
 #        for car in car_list:
 #        and crash car cannot be self
         return car_list[0] #return car_1 first
     def get_acceleration(self,d,v0,t):
-        print(d)
-        print(v0)
-        print(t)
+#        print(d)
+#        print(v0)
+#        print(t)
         self.a_scalar = (2*float(d) - 2*float(v0)*float(t))/(float(t)*float(t))
         return self.a_scalar
     

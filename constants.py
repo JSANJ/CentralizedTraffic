@@ -61,3 +61,36 @@ intersection_x2 = intersection_x + intersection_w
 intersection_y1 = intersection_y
 intersection_y2 = intersection_y + intersection_h
 
+
+start_1 = (int(1+length_of_runway),
+           int(0),
+           int(car_width),
+           int(car_length))
+start_2 = (int(1+length_of_runway+intersection_w/4),
+           int(0),
+           int(car_width),
+           int(car_length))
+start_3 = (int(length_of_runway+intersection_w+length_of_runway-car_length),
+           int(1+length_of_runway),
+           int(car_length),
+           int(car_width))
+start_4 = (int(length_of_runway+intersection_w+length_of_runway-car_length),
+           int(1+length_of_runway+intersection_h/4),
+           int(car_length),
+           int(car_width))
+start_5 = (int(-1+length_of_runway+intersection_w-car_width),
+           int(length_of_runway+intersection_h+length_of_runway-car_length),
+           int(car_width),
+           int(car_length))
+start_6 = (int(-1+length_of_runway+intersection_w-car_width-intersection_w/4),
+           int(length_of_runway+intersection_h+length_of_runway-car_length),
+           int(car_width),
+           int(car_length))
+start_7 = (int(0),
+           int(-1+length_of_runway+intersection_h-car_width),
+           int(car_length),
+           int(car_width))
+start_8 = (int(0),
+           int(-1+length_of_runway+intersection_h-car_width-intersection_h/4),
+           int(car_length),
+           int(car_width))

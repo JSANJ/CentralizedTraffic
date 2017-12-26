@@ -16,6 +16,7 @@ from helper_functions import print_image_bw
 from car_class import CarClass
 from map_class import MapClass
 from constants import playback_speed
+from constants import start_1, start_2, start_3, start_4, start_5, start_6, start_7, start_8
 
 PATH = "C:/Users/JustinSanJuan/Desktop/Workspace/python/Centralized Traffic/" #path to files folder
 #Define Areas
@@ -31,53 +32,16 @@ A = MapClass(area_definition)
 
 #Randomly generated source & target points
 
-start_1 = (int(1+length_of_runway),
-           int(0),
-           int(car_width),
-           int(car_length))
-start_2 = (int(1+length_of_runway+intersection_w/4),
-           int(0),
-           int(car_width),
-           int(car_length))
-start_3 = (int(length_of_runway+intersection_w+length_of_runway-car_length),
-           int(1+length_of_runway),
-           int(car_length),
-           int(car_width))
-start_4 = (int(length_of_runway+intersection_w+length_of_runway-car_length),
-           int(1+length_of_runway+intersection_h/4),
-           int(car_length),
-           int(car_width))
-start_5 = (int(-1+length_of_runway+intersection_w-car_width),
-           int(length_of_runway+intersection_h+length_of_runway-car_length),
-           int(car_width),
-           int(car_length))
-start_6 = (int(-1+length_of_runway+intersection_w-car_width-intersection_w/4),
-           int(length_of_runway+intersection_h+length_of_runway-car_length),
-           int(car_width),
-           int(car_length))
-start_7 = (int(0),
-           int(-1+length_of_runway+intersection_h-car_width),
-           int(car_length),
-           int(car_width))
-start_8 = (int(0),
-           int(-1+length_of_runway+intersection_h-car_width-intersection_h/4),
-           int(car_length),
-           int(car_width))
 car_1 = CarClass(*start_1, [0,0],[0,3],A.intersection_collision_map,[0,9*playback_speed])
 #car_2 = CarClass(*start_2)
 car_3 = CarClass(*start_3,[3,0],[0,0],A.intersection_collision_map,[-10*playback_speed,0])
 car_4 = CarClass(*start_4,[3,1],[0,1],A.intersection_collision_map,[-10*playback_speed,0])
+#car_5 = CarClass(*start_5)
+#car_6 = CarClass(*start_6)
 car_7 = CarClass(*start_7,[0,3],[3,3],A.intersection_collision_map,[8*playback_speed,0])
 car_8 = CarClass(*start_8,[0,2],[3,2],A.intersection_collision_map,[8*playback_speed,0])
-#car_5 = CarClass(*start_5)
-#car_1.v = [0,9]
-#car_1.s = 9 #v in x, y (+'ve y is downwards)
-##car_2.v = [0,25]
-##car_3.v = [int(-30/4),0]
-#car_3.v = [-10,0]
-#car_3.s = 10
-#car_4.v = [-10,0]
-#car_4.s = 10
+
+
 
 #car_list = [car_1, car_2,car_3,car_4]
 global car_list
@@ -87,11 +51,9 @@ for car in car_list:
     A.intersection_collision_map = car.get_area_to_clear(A.intersection_collision_map,car.source,car.target)
 
 car_3.is_collision_possible(car_list, A.intersection_collision_map)
-#car_3.take_action(car_list)
 car_4.is_collision_possible(car_list, A.intersection_collision_map)
 car_7.is_collision_possible(car_list, A.intersection_collision_map)
 car_8.is_collision_possible(car_list, A.intersection_collision_map)
-#car_4.take_action(car_list)
 
 #Simulate
 
