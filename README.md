@@ -19,6 +19,7 @@ Conditions:
 Assumptions:  
   1. (Currently) Only going straight.
   2. Acceleration/deceleration is constant and discontinuous.
+  3. Cars do not have to switch lanes (arrive at correct source point at start of runway).
   
 To be implemented:
   1. Detect collisions.
